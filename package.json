@@ -1,5 +1,5 @@
 {
-  "name": "jsenvtemplate",
+  "name": "Team-Week-Project-Jeopardy-Simulator",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saoud/jsEnvTemplate.git"
+    "url": "git+https://github.com/saoud/Team-Week-Project-Jeopardy-Simulator.git"
   },
   "keywords": [],
-  "author": "Saoud Rana",
+  "author": "Saoud Rana, Jesse Callahan, Laurie Waller, Shanen Cross and Collin Chapman",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/saoud/jsEnvTemplate/issues"
+    "url": "https://github.com/saoud/Team-Week-Project-Jeopardy-Simulator/issues"
   },
-  "homepage": "https://github.com/saoud/jsEnvTemplate#readme",
+  "homepage": "https://github.com/saoud/Team-Week-Project-Jeopardy-Simulator#readme",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
