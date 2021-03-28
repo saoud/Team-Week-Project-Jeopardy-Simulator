@@ -1,6 +1,6 @@
 export default class CategoryLookupService {
   static getCategory() {
-    return fetch(`https://jservice.io/api/categories?count=100`)
+    return fetch(`https://jservice.io/api/categories?count=99`)
       .then(function (response) {
         if (!response.ok) {
           throw Error(response.statusText);
