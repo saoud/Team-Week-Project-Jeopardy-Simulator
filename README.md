@@ -4,11 +4,12 @@
 #### By Saoud Rana, Jesse Callahan, Laurie Waller, Shanen Cross and Collin Chapman
 ## Project Description
 
-
-```This api: https://jservice.io/ gives trivia questions much like jeopardy.
+```
+This api: https://jservice.io/ gives trivia questions much like jeopardy.
 We could try to set up a table of questions much like the iconic Jeopardy! board. 
 We could use CSS to mimic the little blue Jeopardy! squares.
-This project would probably have two MVP avenues we could explore listed below:```
+This project would probably have two MVP avenues we could explore listed below:
+```
  
 ## Technologies Used
 * Javascript ES6
