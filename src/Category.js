@@ -2,7 +2,7 @@ export default class Category {
   constructor(categoryResponse) {
     this.id = categoryResponse.id;
     this.title = categoryResponse.title;
-    this.clues = makeClues(categoryResponse.clues);
+    this.clues = this.makeClues(categoryResponse.clues);
   }
 
   makeClues(responseClues) {
@@ -19,7 +19,6 @@ export default class Category {
           question: responseClue.question,
           value: responseClue.value
         };
-        
         clues[responseClue.value] = newClue;
       }
     }
