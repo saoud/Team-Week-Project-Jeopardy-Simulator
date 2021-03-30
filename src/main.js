@@ -28,7 +28,29 @@ function getCategoryIds(list) {
   }
 }
 
+function createBoard() {
+  console.log(categories)
+  let category1 = categories[0];
+  let category2 = categories[1];
+  $('.catOneTitle').text(category1.title.toUpperCase());
+  $('.catTwoTitle').text(category2.title.toUpperCase());
+
+  for (let i=0;i<categories.length;i++) {
+    for (const [key, value] of Object.entries(categories[i].clues)) {
+      console.log(`${key}: ${value.question}`);
+
+    }
+  }
+
+  $(`.catOne`).html(`<div id='${category1.clues[200].id}'>$${category1.clues[200].value}</div>`);
+  $(`#${category1.clues[200].id}`).click(function() {
+    alert( "Handler for .click() called." );
+  });
+}
+
 $(document).ready(function () {
+
+
   CategoriesListService.getCategoryList()
     .then(function (categoryListResponse) {
       if (categoryListResponse instanceof Error) {
@@ -56,7 +78,10 @@ $(document).ready(function () {
 
       console.log(categories[0]);
       console.log(categories[1]);
+      createBoard();
     }).catch(function (error) {
       displayErrors(error.message);
     });
+
+
 });
