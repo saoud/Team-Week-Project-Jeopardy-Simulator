@@ -28,6 +28,16 @@ function getCategoryIds(list) {
   }
 }
 
+// function clueFinder (clueObject) {
+  
+//   for (let i=0; i<categories.length;i++) {
+//     for (const [key, value] of Object.entries(categories[i].clues)) {
+//       // console.log(`the key is ${key}, the value is ${value}`)
+    
+//        }
+//   }
+// }
+
 function createBoard() {
   console.log(categories)
   let category1 = categories[0];
@@ -35,17 +45,34 @@ function createBoard() {
   $('.catOneTitle').text(category1.title.toUpperCase());
   $('.catTwoTitle').text(category2.title.toUpperCase());
 
-  for (let i=0;i<categories.length;i++) {
-    for (const [key, value] of Object.entries(categories[i].clues)) {
-      console.log(`${key}: ${value.question}`);
+  // for (let i=0;i<categories.length;i++) {
+  //   for (const [key, value] of Object.entries(categories[i].clues)) {
+  //     console.log(`${key}: ${value.question}`);
+  //   }
+  // }
 
-    }
-  }
+  // $('#catOne').html(`<div value='200'>$${category1.clues[200].value}</div>`);
+  // $(`#${category1.clues[200].id}`).click(function() {
+  //   alert( "Handler for .click() called." );
+  // });
 
-  $(`.catOne`).html(`<div id='${category1.clues[200].id}'>$${category1.clues[200].value}</div>`);
-  $(`#${category1.clues[200].id}`).click(function() {
-    alert( "Handler for .click() called." );
-  });
+ 
+    $("div.categoryScores").on("click", "div", function() {
+      //hide the board
+      $("#boardContainer").hide();
+      $("#questionContainer").show();
+console.log(this.id)
+let specificCat;
+if (this.id === "catOne200") {specificCat = category1.clues[200]}
+console.log(specificCat)
+      // clueFinder(this.id)
+      $("#questionCard").text(`${specificCat.question}`)
+    $(".question-btn").click(function () {
+      $("#boardContainer").show();
+      $("#questionContainer").hide();
+    })
+    // console.log(`${this.id}`)     
+    });
 }
 
 $(document).ready(function () {

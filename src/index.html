@@ -12,16 +12,16 @@
   </div>
 
   <div id="boardContainer">
+    <div class="categoryTitles">
+      <div class="catOneTitle">Category One</div>
+      <div class="catTwoTitle">Category Two</div>
+    </div>
     <div class="grid-container">
-      <div class="categoryTitles">
-        <div class="catOneTitle">Category One</div>
-        <div class="catTwoTitle">Category Two</div>
-      </div>
       <div class="categoryScores">
-        <div class="catOne200">$200</div>
+        <div id="catOne200">$200</div>
         <div class="catTwo200">$200</div>
         <div class="catOne400">$400</div>
-        <div class="catTwo400">$400</div>
+        <div class="catTwo400">$400</div> 
         <div class="catOne600">$600</div>
         <div class="catTwo600">$600</div>
         <div class="catOne800">$800</div>
@@ -35,7 +35,12 @@
   </div>
 
   <div id="questionContainer">
-
+    <div id="questionCard">
+      
+    </div>
+    <label for="answerBox">Enter your answer:</label>
+    <input id="answerBox" type="text">
+    <button class="question-btn" type="submit">Submit Answer</button>
   </div>
 
 </body>

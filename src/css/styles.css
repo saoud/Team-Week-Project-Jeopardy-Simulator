@@ -24,3 +24,7 @@ html, body, .grid-container { height: 100%; margin: 0; }
   top: 0;
   left: 0;
 }
+
+#questionContainer {
+  display:none;
+}
