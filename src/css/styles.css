@@ -1,4 +1,4 @@
-html, body, .grid-container { height: 100%; margin: 0; }
+html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; }
 
 .grid-container {
   display: grid;
@@ -14,7 +14,20 @@ html, body, .grid-container { height: 100%; margin: 0; }
     ". .";
 }
 
+.categoryTitles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". .";
+}
+
 .grid-container * {
+  border: 1px solid #060CE9;
+  position: relative;
+}
+.categoryTitles {
   border: 1px solid #060CE9;
   position: relative;
 }
@@ -26,5 +39,9 @@ html, body, .grid-container { height: 100%; margin: 0; }
 }
 
 #questionContainer {
+  display:none;
+}
+
+#answerContainer {
   display:none;
 }
