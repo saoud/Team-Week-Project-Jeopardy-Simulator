@@ -64,6 +64,10 @@ function createBoard() {
 console.log(this.id)
 let specificCat;
 if (this.id === "catOne200") {specificCat = category1.clues[200]}
+if (this.id === "catOne400") {specificCat = category1.clues[200]}
+if (this.id === "catOne600") {specificCat = category1.clues[200]}
+if (this.id === "catOne800") {specificCat = category1.clues[200]}
+if (this.id === "catOne1000") {specificCat = category1.clues[200]}
 console.log(specificCat)
       // clueFinder(this.id)
       $("#questionCard").text(`${specificCat.question}`)
