@@ -36,6 +36,7 @@ function createBoard() {
   $('.catTwoTitle').text(category2.title.toUpperCase());
 
   $("div.grid-container").on("click", "div", function() {
+    console.log("grid element on-click function start");
     //hide the board
     $("#boardContainer").hide();
     $("#questionContainer").show();
@@ -51,19 +52,29 @@ function createBoard() {
     if (this.id === "catTwo600") {specificCat = category2.clues[600];}
     if (this.id === "catTwo800") {specificCat = category2.clues[800];}
     if (this.id === "catTwo1000") {specificCat = category2.clues[1000];}
-    // This is to clear the value on the square on the board
-    $("#" + this.id).text(" ");
+
     console.log(this.id);
     console.log(specificCat);
-  
+
+    // This is to clear the value on the square on the board
+    $("#" + this.id).text(" ");
     $("#questionCard").text(`${specificCat.question}`);
+    
+    let currentId = this.id;
+    $(".question-btn").off("click");
     $(".question-btn").click(function () {
+      console.log("question button click function start");
+      console.log(currentId);
       $(".inputContainer").hide();
       $("#answerContainer").show();
 
       $("#answer").html(`${specificCat.answer}`);
 
+      
+      $(".go-back-to-board-btn").off("click");
       $(".go-back-to-board-btn").click(function () {
+        console.log("back to board button click function start");
+        console.log(currentId);
         $("#answerContainer").hide();
         $(".inputContainer").show();
         $("#questionContainer").hide();
