@@ -5,9 +5,31 @@ import './css/styles.css';
 import CategoriesListService from './services/categories-list-service.js';
 import CategoryLookupService from './services/category-lookup-service.js';
 import Category from './Category';
+import Player from './player'
 
 let categoryIds = [];
 let categories = [];
+let playerOne = new Player("Saoud", 0, true);
+let playerTwo = new Player("Laurie", 0, false);
+
+function scoreboardShow () {
+  $(".playerOneName").text(playerOne.name)
+  $(".playerOneScore").text(playerOne.score)
+  $(".playerTwoName").text(playerTwo.name)
+  $(".playerTwoScore").text(playerTwo.score)
+}
+
+function answerLogic(userAnswer, specificCat) {
+  console.log(userAnswer, specificCat.answer, specificCat.value)
+  if (userAnswer === specificCat.answer) {
+    playerOne.score += specificCat.value
+  } else {
+    playerOne.score -= specificCat.value
+    }
+    
+  scoreboardShow();
+}
+
 
 function displayErrors(error) {
   $('.show-errors').text(`${error}`);
@@ -29,7 +51,7 @@ function getCategoryIds(list) {
 }
 
 function createBoard() {
-  console.log(categories)
+  scoreboardShow()
   let category1 = categories[0];
   let category2 = categories[1];
   $('.catOneTitle').text(category1.title.toUpperCase());
@@ -61,11 +83,13 @@ function createBoard() {
   
     $("#questionCard").text(`${specificCat.question}`)
     $(".question-btn").click(function () {
+      let input = $("#answerBox").val();
       $(".inputContainer").hide();
       $("#answerContainer").show();
-
+      answerLogic(input, specificCat);
+      console.log(playerOne)
+      
       $("#answer").html(`${specificCat.answer}`);
-
       $(".go-back-to-board-btn").click(function () {
         $("#answerContainer").hide();
         $(".inputContainer").show();
