@@ -14,7 +14,7 @@ function displayErrors(error) {
 }
 
 function getCategoryIds(list) {
-  console.log(list)
+  console.log(list);
   let randomIndices = [];
   while (randomIndices.length < 5) {
     let randomIndex = Math.floor(Math.random() * 100);
@@ -29,37 +29,34 @@ function getCategoryIds(list) {
 }
 
 function createBoard() {
-  console.log(categories)
+  console.log(categories);
   let category1 = categories[0];
   let category2 = categories[1];
   $('.catOneTitle').text(category1.title.toUpperCase());
   $('.catTwoTitle').text(category2.title.toUpperCase());
 
-  
-  
   $("div.grid-container").on("click", "div", function() {
     //hide the board
     $("#boardContainer").hide();
     $("#questionContainer").show();
-
-    console.log(this.id)
     
     let specificCat;
-    if (this.id === "catOne200") {specificCat = category1.clues[200]}
-    if (this.id === "catOne400") {specificCat = category1.clues[400]}
-    if (this.id === "catOne600") {specificCat = category1.clues[600]}
-    if (this.id === "catOne800") {specificCat = category1.clues[800]}
-    if (this.id === "catOne1000") {specificCat = category1.clues[1000]}
-    if (this.id === "catTwo200") {specificCat = category2.clues[200]}
-    if (this.id === "catTwo400") {specificCat = category2.clues[400]}
-    if (this.id === "catTwo600") {specificCat = category2.clues[600]}
-    if (this.id === "catTwo800") {specificCat = category2.clues[800]}
-    if (this.id === "catTwo1000") {specificCat = category2.clues[1000]}
+    if (this.id === "catOne200") {specificCat = category1.clues[200];}
+    if (this.id === "catOne400") {specificCat = category1.clues[400];}
+    if (this.id === "catOne600") {specificCat = category1.clues[600];}
+    if (this.id === "catOne800") {specificCat = category1.clues[800];}
+    if (this.id === "catOne1000") {specificCat = category1.clues[1000];}
+    if (this.id === "catTwo200") {specificCat = category2.clues[200];}
+    if (this.id === "catTwo400") {specificCat = category2.clues[400];}
+    if (this.id === "catTwo600") {specificCat = category2.clues[600];}
+    if (this.id === "catTwo800") {specificCat = category2.clues[800];}
+    if (this.id === "catTwo1000") {specificCat = category2.clues[1000];}
     // This is to clear the value on the square on the board
     $("#" + this.id).text(" ");
-    console.log(specificCat)
+    console.log(this.id);
+    console.log(specificCat);
   
-    $("#questionCard").text(`${specificCat.question}`)
+    $("#questionCard").text(`${specificCat.question}`);
     $(".question-btn").click(function () {
       $(".inputContainer").hide();
       $("#answerContainer").show();
@@ -72,50 +69,44 @@ function createBoard() {
         $("#questionContainer").hide();
         $("#boardContainer").show();
       
-      })
+      });
 
 
-    })
+    });
       
   });
 }
 
 $(document).ready(function () {
   
-  
+
   CategoriesListService.getCategoryList()
-  .then(function (categoryListResponse) {
-    if (categoryListResponse instanceof Error) {
-      throw Error(`Category List API error: ${categoryListResponse.message}`);
-    }
-    getCategoryIds(categoryListResponse)
-    //where we put the catergories ids go
-    return CategoryLookupService.getCategory(categoryIds[0]);
-  })
-  .then(function (categoryResponse1) {
-    if (categoryResponse1 instanceof Error) {
-      throw Error(`category API error: ${categoryResponse1.message}`);
-    }
-    
-    let category1 = new Category(categoryResponse1);
-    categories.push(category1);
-    return CategoryLookupService.getCategory(categoryIds[1]);
-  }).then(function (categoryResponse2) {
-    if (categoryResponse2 instanceof Error) {
-      throw Error(`category API error: ${categoryResponse2.message}`);
-    }
-    
-    let category2 = new Category(categoryResponse2);
-    categories.push(category2);
-    
-    console.log(categories[0]);
-    console.log(categories[1]);
-    createBoard();
-  }).catch(function (error) {
-    displayErrors(error.message);
-  });
-  
-  
+    .then(function (categoryListResponse) {
+      if (categoryListResponse instanceof Error) {
+        throw Error(`Category List API error: ${categoryListResponse.message}`);
+      }
+      getCategoryIds(categoryListResponse);
+      //where we put the catergories ids go
+      return CategoryLookupService.getCategory(categoryIds[0]);
+    })
+    .then(function (categoryResponse1) {
+      if (categoryResponse1 instanceof Error) {
+        throw Error(`category API error: ${categoryResponse1.message}`);
+      }
+      
+      let category1 = new Category(categoryResponse1);
+      categories.push(category1);
+      return CategoryLookupService.getCategory(categoryIds[1]);
+    }).then(function (categoryResponse2) {
+      if (categoryResponse2 instanceof Error) {
+        throw Error(`category API error: ${categoryResponse2.message}`);
+      }
+      let category2 = new Category(categoryResponse2);
+      categories.push(category2);
+      createBoard();
+    }).catch(function (error) {
+      displayErrors(error.message);
+    });
 });
 
 // for (let i=0;i<categories.length;i++) {
