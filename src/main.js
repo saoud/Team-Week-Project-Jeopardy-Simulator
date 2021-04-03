@@ -98,7 +98,7 @@ function createBoard() {
 
 
     // This is to clear the value on the square on the board
-    $("#" + event.target.id).text(" ");
+    $("#" + event.target.id).text("").addClass("unclickable");
 
     $("#questionCard").text(`${specificCat.question}`)
     console.log(specificCat.answer)
@@ -112,7 +112,7 @@ function createBoard() {
       $("#answerBox").val('');
 
       $("#answer").html(`${specificCat.answer}`);
-      $(".go-back-to-board-btn").click(function () {
+      $(".go-back-to-board-btn").on("click", function () {
         $("#answerContainer").hide();
         $(".inputContainer").show();
         $("#questionContainer").hide();
