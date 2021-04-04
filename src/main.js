@@ -5,7 +5,7 @@ import './css/styles.css';
 import CategoriesListService from './services/categories-list-service.js';
 import CategoryLookupService from './services/category-lookup-service.js';
 import Category from './Category';
-import Player from './player'
+import Player from './player';
 
 let categoryIds = [];
 let categories = [];
@@ -13,32 +13,32 @@ let playerOne = new Player("Saoud", 0, true);
 let playerTwo = new Player("Laurie", 0, false);
 
 function scoreboardShow() {
-  $(".playerOneName").text(playerOne.name)
-  $(".playerOneScore").text(playerOne.score)
-  $(".playerTwoName").text(playerTwo.name)
-  $(".playerTwoScore").text(playerTwo.score)
+  $(".playerOneName").text(playerOne.name);
+  $(".playerOneScore").text(playerOne.score);
+  $(".playerTwoName").text(playerTwo.name);
+  $(".playerTwoScore").text(playerTwo.score);
 }
 
 function answerLogic(userAnswer, specificCat) {
-  console.log(userAnswer, specificCat.answer, specificCat.value)
+  console.log(userAnswer, specificCat.answer, specificCat.value);
   if (userAnswer.toLowerCase() === specificCat.answer.toLowerCase()) {
     if (playerOne.turn === true) {
-      playerOne.score += specificCat.value
+      playerOne.score += specificCat.value;
       playerOne.turn = false;
       playerTwo.turn = true;
     } else {
-      playerTwo.score += specificCat.value
+      playerTwo.score += specificCat.value;
       playerOne.turn = true;
       playerTwo.turn = false;
     }
 
   } else {
     if (playerOne.turn === true) {
-      playerOne.score -= specificCat.value
+      playerOne.score -= specificCat.value;
       playerOne.turn = false;
       playerTwo.turn = true;
     } else {
-      playerTwo.score -= specificCat.value
+      playerTwo.score -= specificCat.value;
       playerOne.turn = true;
       playerTwo.turn = false;
     }
@@ -80,26 +80,26 @@ function createBoard() {
     $("#boardContainer").hide();
     $("#questionContainer").slideDown();
 
-    console.log(event.target.id)
+    console.log(event.target.id);
 
     let specificCat;
-    if (event.target.id === "catOne200") { specificCat = category1.clues[200] }
-    if (event.target.id === "catOne400") { specificCat = category1.clues[400] }
-    if (event.target.id === "catOne600") { specificCat = category1.clues[600] }
-    if (event.target.id === "catOne800") { specificCat = category1.clues[800] }
-    if (event.target.id === "catOne1000") { specificCat = category1.clues[1000] }
-    if (event.target.id === "catTwo200") { specificCat = category2.clues[200] }
-    if (event.target.id === "catTwo400") { specificCat = category2.clues[400] }
-    if (event.target.id === "catTwo600") { specificCat = category2.clues[600] }
-    if (event.target.id === "catTwo800") { specificCat = category2.clues[800] }
-    if (event.target.id === "catTwo1000") { specificCat = category2.clues[1000] }
+    if (event.target.id === "catOne200") { specificCat = category1.clues[200]; }
+    if (event.target.id === "catOne400") { specificCat = category1.clues[400]; }
+    if (event.target.id === "catOne600") { specificCat = category1.clues[600]; }
+    if (event.target.id === "catOne800") { specificCat = category1.clues[800]; }
+    if (event.target.id === "catOne1000") { specificCat = category1.clues[1000]; }
+    if (event.target.id === "catTwo200") { specificCat = category2.clues[200]; }
+    if (event.target.id === "catTwo400") { specificCat = category2.clues[400]; }
+    if (event.target.id === "catTwo600") { specificCat = category2.clues[600]; }
+    if (event.target.id === "catTwo800") { specificCat = category2.clues[800]; }
+    if (event.target.id === "catTwo1000") { specificCat = category2.clues[1000]; }
 
 
     // This is to clear the value on the square on the board
     $("#" + event.target.id).text("").addClass("unclickable");
 
-    $("#questionCard").text(`${specificCat.question}`)
-    console.log(specificCat.answer)
+    $("#questionCard").text(`${specificCat.question}`);
+    console.log(specificCat.answer);
     $(".question-btn").one("click", function (event) {
       // event.stopPropagation();
       event.preventDefault();
