@@ -14,6 +14,10 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; }
     ". .";
 }
 
+.unclickable{
+  pointer-events: none;
+}
+
 .categoryTitles {
   display: grid;
   grid-template-columns: 1fr 1fr;

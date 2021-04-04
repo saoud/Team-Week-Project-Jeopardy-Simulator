@@ -5,16 +5,54 @@ import './css/styles.css';
 import CategoriesListService from './services/categories-list-service.js';
 import CategoryLookupService from './services/category-lookup-service.js';
 import Category from './Category';
+import Player from './player'
 
 let categoryIds = [];
 let categories = [];
+let playerOne = new Player("Saoud", 0, true);
+let playerTwo = new Player("Laurie", 0, false);
+
+function scoreboardShow() {
+  $(".playerOneName").text(playerOne.name)
+  $(".playerOneScore").text(playerOne.score)
+  $(".playerTwoName").text(playerTwo.name)
+  $(".playerTwoScore").text(playerTwo.score)
+}
+
+function answerLogic(userAnswer, specificCat) {
+  console.log(userAnswer, specificCat.answer, specificCat.value)
+  if (userAnswer.toLowerCase() === specificCat.answer.toLowerCase()) {
+    if (playerOne.turn === true) {
+      playerOne.score += specificCat.value
+      playerOne.turn = false;
+      playerTwo.turn = true;
+    } else {
+      playerTwo.score += specificCat.value
+      playerOne.turn = true;
+      playerTwo.turn = false;
+    }
+
+  } else {
+    if (playerOne.turn === true) {
+      playerOne.score -= specificCat.value
+      playerOne.turn = false;
+      playerTwo.turn = true;
+    } else {
+      playerTwo.score -= specificCat.value
+      playerOne.turn = true;
+      playerTwo.turn = false;
+    }
+  }
+
+  return scoreboardShow();
+}
+
 
 function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
 function getCategoryIds(list) {
-  console.log(list);
   let randomIndices = [];
   while (randomIndices.length < 5) {
     let randomIndex = Math.floor(Math.random() * 100);
@@ -29,52 +67,50 @@ function getCategoryIds(list) {
 }
 
 function createBoard() {
-  console.log(categories);
   let category1 = categories[0];
   let category2 = categories[1];
   $('.catOneTitle').text(category1.title.toUpperCase());
   $('.catTwoTitle').text(category2.title.toUpperCase());
 
-  $("div.grid-container").on("click", "div", function() {
-    console.log("grid element on-click function start");
+
+
+  $("div.grid-container").on("click", "div", function (event) {
+
     //hide the board
     $("#boardContainer").hide();
-    $("#questionContainer").show();
-    
-    let specificCat;
-    if (this.id === "catOne200") {specificCat = category1.clues[200];}
-    if (this.id === "catOne400") {specificCat = category1.clues[400];}
-    if (this.id === "catOne600") {specificCat = category1.clues[600];}
-    if (this.id === "catOne800") {specificCat = category1.clues[800];}
-    if (this.id === "catOne1000") {specificCat = category1.clues[1000];}
-    if (this.id === "catTwo200") {specificCat = category2.clues[200];}
-    if (this.id === "catTwo400") {specificCat = category2.clues[400];}
-    if (this.id === "catTwo600") {specificCat = category2.clues[600];}
-    if (this.id === "catTwo800") {specificCat = category2.clues[800];}
-    if (this.id === "catTwo1000") {specificCat = category2.clues[1000];}
+    $("#questionContainer").slideDown();
 
-    console.log(this.id);
-    console.log(specificCat);
+    console.log(event.target.id)
+
+    let specificCat;
+    if (event.target.id === "catOne200") { specificCat = category1.clues[200] }
+    if (event.target.id === "catOne400") { specificCat = category1.clues[400] }
+    if (event.target.id === "catOne600") { specificCat = category1.clues[600] }
+    if (event.target.id === "catOne800") { specificCat = category1.clues[800] }
+    if (event.target.id === "catOne1000") { specificCat = category1.clues[1000] }
+    if (event.target.id === "catTwo200") { specificCat = category2.clues[200] }
+    if (event.target.id === "catTwo400") { specificCat = category2.clues[400] }
+    if (event.target.id === "catTwo600") { specificCat = category2.clues[600] }
+    if (event.target.id === "catTwo800") { specificCat = category2.clues[800] }
+    if (event.target.id === "catTwo1000") { specificCat = category2.clues[1000] }
+
 
     // This is to clear the value on the square on the board
-    $("#" + this.id).text(" ");
-    $("#questionCard").text(`${specificCat.question}`);
-    
-    let currentId = this.id;
-    $(".question-btn").off("click");
-    $(".question-btn").click(function () {
-      console.log("question button click function start");
-      console.log(currentId);
+    $("#" + event.target.id).text("").addClass("unclickable");
+
+    $("#questionCard").text(`${specificCat.question}`)
+    console.log(specificCat.answer)
+    $(".question-btn").one("click", function (event) {
+      // event.stopPropagation();
+      event.preventDefault();
+      let input = $("#answerBox").val();
       $(".inputContainer").hide();
       $("#answerContainer").show();
+      answerLogic(input, specificCat);
+      $("#answerBox").val('');
 
       $("#answer").html(`${specificCat.answer}`);
-
-      
-      $(".go-back-to-board-btn").off("click");
-      $(".go-back-to-board-btn").click(function () {
-        console.log("back to board button click function start");
-        console.log(currentId);
+      $(".go-back-to-board-btn").on("click", function () {
         $("#answerContainer").hide();
         $(".inputContainer").show();
         $("#questionContainer").hide();
@@ -132,11 +168,11 @@ $(document).ready(function () {
 // });
 
 // function clueFinder (clueObject) {
-  
+
 //   for (let i=0; i<categories.length;i++) {
 //     for (const [key, value] of Object.entries(categories[i].clues)) {
 //       // console.log(`the key is ${key}, the value is ${value}`)
-    
+
 //        }
 //   }
 // }
