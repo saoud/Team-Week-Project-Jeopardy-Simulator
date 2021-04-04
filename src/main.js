@@ -5,7 +5,7 @@ import './css/styles.css';
 import CategoriesListService from './services/categories-list-service.js';
 import CategoryLookupService from './services/category-lookup-service.js';
 import Category from './Category';
-import Player from './player'
+import Player from './player';
 
 let categoryIds = [];
 let categories = [];
@@ -13,21 +13,21 @@ let playerOne = new Player("Saoud", 0, true);
 let playerTwo = new Player("Laurie", 0, false);
 
 function scoreboardShow() {
-  $(".playerOneName").text(playerOne.name)
-  $(".playerOneScore").text(playerOne.score)
-  $(".playerTwoName").text(playerTwo.name)
-  $(".playerTwoScore").text(playerTwo.score)
+  $(".playerOneName").text(playerOne.name);
+  $(".playerOneScore").text(playerOne.score);
+  $(".playerTwoName").text(playerTwo.name);
+  $(".playerTwoScore").text(playerTwo.score);
 }
 
 function answerLogic(userAnswer, specificCat) {
-  console.log(userAnswer, specificCat.answer, specificCat.value)
+  console.log(userAnswer, specificCat.answer, specificCat.value);
   if (userAnswer.toLowerCase() === specificCat.answer.toLowerCase()) {
     if (playerOne.turn === true) {
-      playerOne.score += specificCat.value
+      playerOne.score += specificCat.value;
       playerOne.turn = false;
       playerTwo.turn = true;
     } else {
-      playerTwo.score += specificCat.value
+      playerTwo.score += specificCat.value;
       playerOne.turn = true;
       playerTwo.turn = false;
     }
@@ -47,13 +47,11 @@ function answerLogic(userAnswer, specificCat) {
   return scoreboardShow();
 }
 
-
 function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
 function getCategoryIds(list) {
-
   let randomIndices = [];
   while (randomIndices.length < 5) {
     let randomIndex = Math.floor(Math.random() * 100);
@@ -61,7 +59,6 @@ function getCategoryIds(list) {
       randomIndices.push(randomIndex);
     }
   }
-
   for (let randomIndex of randomIndices) {
     categoryIds.push(list[randomIndex].id);
   }
@@ -80,7 +77,7 @@ function createBoard() {
 
     //hide the board
     $("#boardContainer").hide();
-    $("#questionContainer").slideDown();
+    $("#questionContainer").show();
 
     console.log(event.target.id)
 
@@ -98,10 +95,10 @@ function createBoard() {
 
 
     // This is to clear the value on the square on the board
-    $("#" + event.target.id).text("").addClass("unclickable");
+    $("#" + event.target.id).html(`<span style="opacity:0;">This sentence is invisible</span>`).addClass("unclickable");
 
-    $("#questionCard").text(`${specificCat.question}`)
-    console.log(specificCat.answer)
+    $("#questionCard").text(`${specificCat.question}`);
+    console.log(specificCat.answer);
     $(".question-btn").one("click", function (event) {
       // event.stopPropagation();
       event.preventDefault();
@@ -118,10 +115,10 @@ function createBoard() {
         $("#questionContainer").hide();
         $("#boardContainer").show();
 
-      })
+      });
 
 
-    })
+    });
 
   });
 }
@@ -134,7 +131,7 @@ $(document).ready(function () {
       if (categoryListResponse instanceof Error) {
         throw Error(`Category List API error: ${categoryListResponse.message}`);
       }
-      getCategoryIds(categoryListResponse)
+      getCategoryIds(categoryListResponse);
       //where we put the catergories ids go
       return CategoryLookupService.getCategory(categoryIds[0]);
     })
@@ -145,7 +142,7 @@ $(document).ready(function () {
 
       let category1 = new Category(categoryResponse1);
       categories.push(category1);
-      console.log(category1)
+      console.log(category1);
       return CategoryLookupService.getCategory(categoryIds[1]);
     }).then(function (categoryResponse2) {
       if (categoryResponse2 instanceof Error) {
