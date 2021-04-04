@@ -47,7 +47,6 @@ function answerLogic(userAnswer, specificCat) {
   return scoreboardShow();
 }
 
-
 function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
@@ -72,10 +71,7 @@ function createBoard() {
   $('.catOneTitle').text(category1.title.toUpperCase());
   $('.catTwoTitle').text(category2.title.toUpperCase());
 
-
-
   $("div.grid-container").on("click", "div", function (event) {
-
     //hide the board
     $("#boardContainer").hide();
     $("#questionContainer").slideDown();
@@ -93,7 +89,6 @@ function createBoard() {
     if (event.target.id === "catTwo600") { specificCat = category2.clues[600]; }
     if (event.target.id === "catTwo800") { specificCat = category2.clues[800]; }
     if (event.target.id === "catTwo1000") { specificCat = category2.clues[1000]; }
-
 
     // This is to clear the value on the square on the board
     $("#" + event.target.id).text("").addClass("unclickable");
@@ -115,18 +110,12 @@ function createBoard() {
         $(".inputContainer").show();
         $("#questionContainer").hide();
         $("#boardContainer").show();
-      
       });
-
-
     });
-      
   });
 }
 
 $(document).ready(function () {
-  
-
   CategoriesListService.getCategoryList()
     .then(function (categoryListResponse) {
       if (categoryListResponse instanceof Error) {
