@@ -147,24 +147,3 @@ $(document).ready(function () {
       displayErrors(error.message);
     });
 });
-
-// for (let i=0;i<categories.length;i++) {
-//   for (const [key, value] of Object.entries(categories[i].clues)) {
-//     console.log(`${key}: ${value.question}`);
-//   }
-// }
-
-// $('#catOne').html(`<div value='200'>$${category1.clues[200].value}</div>`);
-// $(`#${category1.clues[200].id}`).click(function() {
-//   alert( "Handler for .click() called." );
-// });
-
-// function clueFinder (clueObject) {
-
-//   for (let i=0; i<categories.length;i++) {
-//     for (const [key, value] of Object.entries(categories[i].clues)) {
-//       // console.log(`the key is ${key}, the value is ${value}`)
-
-//        }
-//   }
-// }
