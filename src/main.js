@@ -65,13 +65,26 @@ function getCategoryIds(list) {
   }
 }
 
-function createBoard() {
-  let category1 = categories[0];
-  let category2 = categories[1];
-  $('.catOneTitle').text(category1.title.toUpperCase());
-  $('.catTwoTitle').text(category2.title.toUpperCase());
+function generateCategoryTitles() {
+ for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
+  $("div.categoryTitles").append(`<div class="categoryTitle" data-category-index=${categoryIndex}>${categories[categoryIndex].title.toUpperCase()}</div>`);
+ } 
+}
 
-  $("div.grid-container").on("click", "div", function (event) {
+function generateGridElements() {
+  for (let value = 200; value <= 1000; value += 200) {
+    for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
+      console.log(value);
+      $("div.gridContainer").append(`<div class="clue" data-category-index=${categoryIndex} data-value=${value}>$${value}</div>`);
+    }
+  }
+}
+
+function createBoard() {
+  generateCategoryTitles();
+  generateGridElements();
+
+  $("div.gridContainer").on("click", "div", function (event) {
     //hide the board
     $("#boardContainer").hide();
     $("#questionContainer").slideDown();
