@@ -12,32 +12,38 @@
   </div>
 
   <div id="boardContainer">
+    <div class="categoryTitles">
+    </div>
     <div class="grid-container">
-      <div class="categoryTitles">
-        <div class="catOneTitle">Category One</div>
-        <div class="catTwoTitle">Category Two</div>
-      </div>
-      <div class="categoryScores">
-        <div class="catOne200">$200</div>
-        <div class="catTwo200">$200</div>
-        <div class="catOne400">$400</div>
-        <div class="catTwo400">$400</div>
-        <div class="catOne600">$600</div>
-        <div class="catTwo600">$600</div>
-        <div class="catOne800">$800</div>
-        <div class="catTwo800">$800</div>
-        <div class="catOne1000">$1000</div>
-        <div class="catTwo1000">$1000</div>
-      </div>
-
     </div>
     <div class="show-errors"></div>
   </div>
 
   <div id="questionContainer">
 
+    <div id="questionCard"></div>
+
+    <div class="answerCss">
+      <div class="inputContainer">
+        <label for="answerBox">Enter your answer:</label>
+        <input id="answerBox" type="text">
+        <button class="question-btn" type="submit">Submit Answer</button>
+      </div>
+
+      <div id="answerContainer">
+        <div id="answer"></div>
+        <button class="go-back-to-board-btn" type="submit">Go Back to Board</button>
+      </div>
+    </div>
+
   </div>
 
+  <div class="scoreBoard">
+    <div class="playerOneName"></div>
+    <div class="playerOneScore"></div>
+    <div class="playerTwoName"></div>
+    <div class="playerTwoScore"></div>
+  </div>
 </body>
 
 </html>

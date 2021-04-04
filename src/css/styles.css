@@ -1,7 +1,9 @@
-html, body, .grid-container { height: 100%; margin: 0; }
+html, body, .grid-container, .categoryTitles { height: 100%; margin: 0;  font-family: 'Korinab';}
 
 .grid-container {
+  font-size: xx-large;
   display: grid;
+  border: 3px solid #000;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
@@ -14,13 +16,82 @@ html, body, .grid-container { height: 100%; margin: 0; }
     ". .";
 }
 
-.grid-container * {
-  border: 1px solid #060CE9;
-  position: relative;
+.unclickable{
+  pointer-events: none;
 }
 
-.grid-container *:after {
+.categoryTitles, .grid-container {
+  font-size: xx-large;
+  display: grid;
+  text-align: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+  ". .";
+  color: #ddd;
+  background: linear-gradient(to top left, #000088, #0000ff);
+
+}
+ .clue {
+      top: 0;
+      bottom: 0;
+      flex: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3.5vw;
+      font-family: imp61d;
+      color: #FFD700;
+      background: linear-gradient(to top left, #000088, #0000ff);
+      border: 3px solid#000;
+  }
+
+
+
+.answerCss {
+  margin-top: 10%; 
+}
+
+#questionContainer {
+  display:none;
+  font-size: xx-large;
+  color: #ddd;
+  background: linear-gradient(to top left, #000088, #0000ff);
+  position: relative;
+  margin: 10%;
+  /* width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%; */
+}
+
+
+#answerContainer {
+  display:none;
+}
+
+@font-face {
+  font-family: 'Korinab';
+  src: local('../fonts/korinab.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* .grid-container * {
+  border: 1px solid #060CE9;
+  position: relative;
+} */
+/* .categoryTitles {
+  border: 1px solid black;
+  position: relative;
+} */
+
+/* .grid-container *:after {
   position: absolute;
   top: 0;
   left: 0;
-}
+} */
+
