@@ -59,7 +59,6 @@ function getCategoryIds(list) {
       randomIndices.push(randomIndex);
     }
   }
-
   for (let randomIndex of randomIndices) {
     categoryIds.push(list[randomIndex].id);
   }
@@ -86,14 +85,14 @@ function createBoard() {
   $("div.grid-container").on("click", "div", function (event) {
     //hide the board
     $("#boardContainer").hide();
-    $("#questionContainer").slideDown();
+    $("#questionContainer").show();
 
     console.log(event.target.id);
     const data = event.target.dataset;
     let clue = categories[data.categoryIndex].clues[data.value];
     
     // This is to clear the value on the square on the board
-    $(event.target).text("").addClass("unclickable");
+    $(event.target).html(`<span style="opacity:0;">This sentence is invisible</span>`).addClass("unclickable");
 
     $("#questionCard").text(`${clue.question}`);
     console.log(clue.answer);
