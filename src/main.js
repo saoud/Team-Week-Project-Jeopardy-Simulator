@@ -74,7 +74,6 @@ function generateCategoryTitles() {
 function generateGridElements() {
   for (let value = 200; value <= 1000; value += 200) {
     for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
-      console.log(value);
       $("div.grid-container").append(`<div class="clue" data-category-index=${categoryIndex} data-value=${value}>$${value}</div>`);
     }
   }
