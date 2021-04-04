@@ -75,7 +75,7 @@ function generateGridElements() {
   for (let value = 200; value <= 1000; value += 200) {
     for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
       console.log(value);
-      $("div.gridContainer").append(`<div class="clue" data-category-index=${categoryIndex} data-value=${value}>$${value}</div>`);
+      $("div.grid-container").append(`<div class="clue" data-category-index=${categoryIndex} data-value=${value}>$${value}</div>`);
     }
   }
 }
@@ -84,7 +84,7 @@ function createBoard() {
   generateCategoryTitles();
   generateGridElements();
 
-  $("div.gridContainer").on("click", "div", function (event) {
+  $("div.grid-container").on("click", "div", function (event) {
     //hide the board
     $("#boardContainer").hide();
     $("#questionContainer").slideDown();
