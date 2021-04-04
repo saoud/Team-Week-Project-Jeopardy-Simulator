@@ -110,7 +110,7 @@ function createBoard() {
       $("#answerBox").val('');
 
       $("#answer").html(`${specificCat.answer}`);
-      $(".go-back-to-board-btn").on("click", function () {
+      $(".go-back-to-board-btn").one("click", function () {
         $("#answerContainer").hide();
         $(".inputContainer").show();
         $("#questionContainer").hide();
