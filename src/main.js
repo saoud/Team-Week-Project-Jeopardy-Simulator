@@ -21,7 +21,7 @@ function scoreboardShow() {
 
 function answerLogic(userAnswer, specificCat) {
   console.log(userAnswer, specificCat.answer, specificCat.value)
-  if (userAnswer === specificCat.answer) {
+  if (userAnswer.toLowerCase() === specificCat.answer.toLowerCase()) {
     if (playerOne.turn === true) {
       playerOne.score += specificCat.value
       playerOne.turn = false;
@@ -145,6 +145,7 @@ $(document).ready(function () {
 
       let category1 = new Category(categoryResponse1);
       categories.push(category1);
+      console.log(category1)
       return CategoryLookupService.getCategory(categoryIds[1]);
     }).then(function (categoryResponse2) {
       if (categoryResponse2 instanceof Error) {
@@ -153,6 +154,7 @@ $(document).ready(function () {
 
       let category2 = new Category(categoryResponse2);
       categories.push(category2);
+
 
       // console.log(categories[0]);
       // console.log(categories[1]);
