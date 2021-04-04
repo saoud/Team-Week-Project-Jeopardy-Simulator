@@ -94,7 +94,7 @@ function createBoard() {
     let clue = categories[data.categoryIndex].clues[data.value];
     
     // This is to clear the value on the square on the board
-    $("#" + event.target.id).text("").addClass("unclickable");
+    $(event.target).text("").addClass("unclickable");
 
     $("#questionCard").text(`${clue.question}`);
     console.log(clue.answer);
