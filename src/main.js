@@ -19,26 +19,26 @@ function scoreboardShow() {
   $(".playerTwoScore").text(playerTwo.score);
 }
 
-function answerLogic(userAnswer, specificCat) {
-  console.log(userAnswer, specificCat.answer, specificCat.value);
-  if (userAnswer.toLowerCase() === specificCat.answer.toLowerCase()) {
+function answerLogic(userAnswer, clue) {
+  console.log(userAnswer, clue.answer, clue.value);
+  if (userAnswer.toLowerCase() === clue.answer.toLowerCase()) {
     if (playerOne.turn === true) {
-      playerOne.score += specificCat.value;
+      playerOne.score += clue.value;
       playerOne.turn = false;
       playerTwo.turn = true;
     } else {
-      playerTwo.score += specificCat.value;
+      playerTwo.score += clue.value;
       playerOne.turn = true;
       playerTwo.turn = false;
     }
 
   } else {
     if (playerOne.turn === true) {
-      playerOne.score -= specificCat.value;
+      playerOne.score -= clue.value;
       playerOne.turn = false;
       playerTwo.turn = true;
     } else {
-      playerTwo.score -= specificCat.value;
+      playerTwo.score -= clue.value;
       playerOne.turn = true;
       playerTwo.turn = false;
     }
@@ -77,34 +77,24 @@ function createBoard() {
     $("#questionContainer").slideDown();
 
     console.log(event.target.id);
-
-    let specificCat;
-    if (event.target.id === "catOne200") { specificCat = category1.clues[200]; }
-    if (event.target.id === "catOne400") { specificCat = category1.clues[400]; }
-    if (event.target.id === "catOne600") { specificCat = category1.clues[600]; }
-    if (event.target.id === "catOne800") { specificCat = category1.clues[800]; }
-    if (event.target.id === "catOne1000") { specificCat = category1.clues[1000]; }
-    if (event.target.id === "catTwo200") { specificCat = category2.clues[200]; }
-    if (event.target.id === "catTwo400") { specificCat = category2.clues[400]; }
-    if (event.target.id === "catTwo600") { specificCat = category2.clues[600]; }
-    if (event.target.id === "catTwo800") { specificCat = category2.clues[800]; }
-    if (event.target.id === "catTwo1000") { specificCat = category2.clues[1000]; }
-
+    const data = event.target.dataset;
+    let clue = categories[data.categoryIndex].clues[data.value];
+    
     // This is to clear the value on the square on the board
     $("#" + event.target.id).text("").addClass("unclickable");
 
-    $("#questionCard").text(`${specificCat.question}`);
-    console.log(specificCat.answer);
+    $("#questionCard").text(`${clue.question}`);
+    console.log(clue.answer);
     $(".question-btn").one("click", function (event) {
       // event.stopPropagation();
       event.preventDefault();
       let input = $("#answerBox").val();
       $(".inputContainer").hide();
       $("#answerContainer").show();
-      answerLogic(input, specificCat);
+      answerLogic(input, clue);
       $("#answerBox").val('');
 
-      $("#answer").html(`${specificCat.answer}`);
+      $("#answer").html(`${clue.answer}`);
       $(".go-back-to-board-btn").one("click", function () {
         $("#answerContainer").hide();
         $(".inputContainer").show();
