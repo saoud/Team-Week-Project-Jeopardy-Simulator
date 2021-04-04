@@ -66,9 +66,9 @@ function getCategoryIds(list) {
 }
 
 function generateCategoryTitles() {
- for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
-  $("div.categoryTitles").append(`<div class="categoryTitle" data-category-index=${categoryIndex}>${categories[categoryIndex].title.toUpperCase()}</div>`);
- } 
+  for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
+    $("div.categoryTitles").append(`<div class="categoryTitle" data-category-index=${categoryIndex}>${categories[categoryIndex].title.toUpperCase()}</div>`);
+  } 
 }
 
 function generateGridElements() {
