@@ -13,10 +13,10 @@ let playerOne = new Player("Saoud", 0, true);
 let playerTwo = new Player("Laurie", 0, false);
 
 function scoreboardShow() {
-  $(".playerOneName").text(playerOne.name);
-  $(".playerOneScore").text(playerOne.score);
-  $(".playerTwoName").text(playerTwo.name);
-  $(".playerTwoScore").text(playerTwo.score);
+  $("#playerOneName").text(playerOne.name);
+  $("#playerOneScore").text(playerOne.score);
+  $("#playerTwoName").text(playerTwo.name);
+  $("#playerTwoScore").text(playerTwo.score);
 }
 
 function answerLogic(userAnswer, clue) {
@@ -67,7 +67,7 @@ function getCategoryIds(list) {
 function generateCategoryTitles() {
   for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
     $("div.categoryTitles").append(`<div class="categoryTitle" data-category-index=${categoryIndex}>${categories[categoryIndex].title.toUpperCase()}</div>`);
-  } 
+  }
 }
 
 function generateGridElements() {
@@ -90,11 +90,11 @@ function createBoard() {
     console.log(event.target.id);
     const data = event.target.dataset;
     let clue = categories[data.categoryIndex].clues[data.value];
-    
-    // This is to clear the value on the square on the board
-    $(event.target).html(`<span style="opacity:0;">This sentence is invisible</span>`).addClass("unclickable");
 
-    $("#questionCard").text(`${clue.question}`);
+    // This is to clear the value on the square on the board
+    $(event.target).html(`<span style="opacity:0;">$$$$$$</span>`).addClass("unclickable");
+
+    $("#questionCard").text(`${clue.question.toUpperCase()}`);
     console.log(clue.answer);
     $(".question-btn").one("click", function (event) {
       // event.stopPropagation();
@@ -105,7 +105,7 @@ function createBoard() {
       answerLogic(input, clue);
       $("#answerBox").val('');
 
-      $("#answer").html(`${clue.answer}`);
+      $("#answer").html(`${clue.answer.toUpperCase()}`);
       $(".go-back-to-board-btn").one("click", function () {
         $("#answerContainer").hide();
         $(".inputContainer").show();
@@ -130,7 +130,6 @@ $(document).ready(function () {
       if (categoryResponse1 instanceof Error) {
         throw Error(`category API error: ${categoryResponse1.message}`);
       }
-      
       let category1 = new Category(categoryResponse1);
       categories.push(category1);
       return CategoryLookupService.getCategory(categoryIds[1]);
@@ -140,8 +139,33 @@ $(document).ready(function () {
       }
       let category2 = new Category(categoryResponse2);
       categories.push(category2);
+      return CategoryLookupService.getCategory(categoryIds[2]);
+    }).then(function (categoryResponse3) {
+      if (categoryResponse3 instanceof Error) {
+        throw Error(`category API error: ${categoryResponse3.message}`);
+      }
+      let category3 = new Category(categoryResponse3);
+      categories.push(category3);
+      return CategoryLookupService.getCategory(categoryIds[3]);
+    }).then(function (categoryResponse4) {
+      if (categoryResponse4 instanceof Error) {
+        throw Error(`category API error: ${categoryResponse4.message}`);
+      }
+      let category4 = new Category(categoryResponse4);
+      categories.push(category4);
+      return CategoryLookupService.getCategory(categoryIds[4]);
+    }).then(function (categoryResponse5) {
+      if (categoryResponse5 instanceof Error) {
+        throw Error(`category API error: ${categoryResponse5.message}`);
+      }
+      let category5 = new Category(categoryResponse5);
+      categories.push(category5);
       createBoard();
     }).catch(function (error) {
       displayErrors(error.message);
     });
+
+
+
+
 });
