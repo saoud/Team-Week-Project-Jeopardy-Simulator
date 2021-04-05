@@ -7,10 +7,6 @@
 
 <body>
 
-  <div id="landingPage">
-
-  </div>
-
   <div id="boardContainer">
     <div class="categoryTitles">
     </div>
@@ -20,29 +16,29 @@
   </div>
 
   <div id="questionContainer">
+    <div class="marginPart">
+      <div id="questionCard"></div>
 
-    <div id="questionCard"></div>
+      <div class="answerCss">
+        <div class="inputContainer">
+          <label for="answerBox">ENTER YOUR ANSWER:</label>
+          <input id="answerBox" type="text">
+          <button class="question-btn" type="submit">Submit Answer</button>
+        </div>
 
-    <div class="answerCss">
-      <div class="inputContainer">
-        <label for="answerBox">Enter your answer:</label>
-        <input id="answerBox" type="text">
-        <button class="question-btn" type="submit">Submit Answer</button>
-      </div>
-
-      <div id="answerContainer">
-        <div id="answer"></div>
-        <button class="go-back-to-board-btn" type="submit">Go Back to Board</button>
+        <div id="answerContainer">
+          <div id="answer"></div>
+          <button class="go-back-to-board-btn" type="submit">Go Back to Board</button>
+        </div>
       </div>
     </div>
-
   </div>
 
-  <div class="scoreBoard">
-    <div class="playerOneName"></div>
-    <div class="playerOneScore"></div>
-    <div class="playerTwoName"></div>
-    <div class="playerTwoScore"></div>
+  <div id="scoreBoard">
+    <div id="playerOneName" class="nameBox"></div>
+    <div id="playerOneScore" class="scoreBox"></div>
+    <div id="playerTwoName" class="nameBox"></div>
+    <div id="playerTwoScore" class="scoreBox"></div>
   </div>
 </body>
 
