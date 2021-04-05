@@ -1,4 +1,4 @@
-html, body, .grid-container, .categoryTitles { height: 100%; margin: 0;   }
+html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-family:'thing';  }
 
 .grid-container {
   
@@ -23,7 +23,7 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0;   }
 }
 
 .categoryTitles, .grid-container {
-  font-family: 'jeopardy';
+  /* font-family: 'jeopardy'; */
   font-size: xx-large;
   display: grid;
   text-align: center;
@@ -50,7 +50,7 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0;   }
     justify-content: center;
     align-items: center;
     font-size: 3.5vw;
-    font-family: 'jeopardy';
+    /* font-family: 'jeopardy'; */
     color: #FFD700;
     background: linear-gradient(to top left, #000088, #0000ff);
     border: 3px solid#000;
@@ -64,7 +64,7 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0;   }
 
 #questionContainer {
   background: linear-gradient(to top left, #000088, #0000ff) ;
-  font-family: 'jeopardy';
+  /* font-family: 'jeopardy'; */
   text-shadow: 2px 2px black;
   display:none;
   height: 100%;
@@ -90,8 +90,8 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0;   }
 }
 
 @font-face {
-  font-family: 'jeopardy';
-  src: local('../fonts/Winkle-Regular.ttf') ;
+  font-family: 'thing';
+  src: url('../fonts/korinab.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
   letter-spacing: 100px;
