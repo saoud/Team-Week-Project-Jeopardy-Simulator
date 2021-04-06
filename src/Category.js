@@ -8,6 +8,9 @@ export default class Category {
   makeClues(responseClues) {
     let clues = {};
     for (let responseClue of responseClues) {
+      if (responseClue.value === null) {
+        return null;
+      }
       if (responseClue.value === 200 || 
           responseClue.value === 400 ||
           responseClue.value === 600 ||
