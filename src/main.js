@@ -52,6 +52,7 @@ function displayErrors(error) {
 }
 
 function getCategoryIds(list) {
+  categoryIds = [];
   let randomIndices = [];
   while (randomIndices.length < 5) {
     let randomIndex = Math.floor(Math.random() * 100);
@@ -59,6 +60,7 @@ function getCategoryIds(list) {
       randomIndices.push(randomIndex);
     }
   }
+  console.log(randomIndices);
   for (let randomIndex of randomIndices) {
     categoryIds.push(list[randomIndex].id);
   }
@@ -116,32 +118,51 @@ function createBoard() {
   });
 }
 
-$(document).ready(function () {
-  CategoriesListService.getCategoryList()
-    .then(function (categoryListResponse) {
-      if (categoryListResponse instanceof Error) {
-        throw Error(`Category List API error: ${categoryListResponse.message}`);
-      }
-      getCategoryIds(categoryListResponse);
-      //where we put the catergories ids go
-      return CategoryLookupService.getCategory(categoryIds[0]);
-    })
+function makeCategoryList(categoryListResponse) {
+  if (categoryListResponse instanceof Error) {
+    throw Error(`Category List API error: ${categoryListResponse.message}`);
+  }
+  return categoryListResponse;
+}
+
+function makeRandomCategories(categoryListResponse) {
+  getCategoryIds(categoryListResponse);
+  console.log(categoryIds);
+  //where we put the catergories ids go
+  return CategoryLookupService.getCategory(categoryIds[0])
     .then(function (categoryResponse1) {
       if (categoryResponse1 instanceof Error) {
         throw Error(`category API error: ${categoryResponse1.message}`);
       }
-      
       let category1 = new Category(categoryResponse1);
+      if (category1.clues === null || category1.clues === undefined) {
+        console.log("Invalid clue");
+        return makeRandomCategories(categoryListResponse);
+      }
       categories.push(category1);
       return CategoryLookupService.getCategory(categoryIds[1]);
     }).then(function (categoryResponse2) {
       if (categoryResponse2 instanceof Error) {
         throw Error(`category API error: ${categoryResponse2.message}`);
       }
+      console.log(`categoryResponse2:`);
+      console.log(categoryResponse2);
       let category2 = new Category(categoryResponse2);
+      if (category2.clues === null || category2.clues === undefined) {
+        console.log("Invalid clue");
+        return makeRandomCategories(categoryListResponse);
+      }
       categories.push(category2);
-      createBoard();
-    }).catch(function (error) {
+    });
+}
+
+$(document).ready(function () {
+  CategoriesListService.getCategoryList()
+    .then(makeCategoryList)
+    .then(makeRandomCategories)
+    .then(createBoard)
+    .catch(function (error) {
+      console.log(error);
       displayErrors(error.message);
     });
 });
