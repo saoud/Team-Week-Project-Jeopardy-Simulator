@@ -1,13 +1,12 @@
-html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-family:'thing';  }
+html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-family:'jeopardy-font'; background: linear-gradient(to top left, #1313d8, #3f3fa0)}
+
 
 .grid-container {
-  
-  /* font: 'Korinab'; */
   font-size: xx-large;
   display: grid;
   border: 3px solid #000;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
     ". . . . ."
@@ -22,8 +21,7 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
   pointer-events: none;
 }
 
-.categoryTitles, .grid-container {
-  /* font-family: 'jeopardy'; */
+.categoryTitles  {
   font-size: xx-large;
   display: grid;
   text-align: center;
@@ -34,14 +32,14 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
   ". . . . .";
   color: #ddd;
   background: linear-gradient(to top left, #000088, #0000ff);
-
+  grid-auto-flow: row;
 }
 
 .categoryTitle{
   border: 3px solid#000;
+
 }
  .clue {
-    /* font: 'jeopardy'; */
     top: 0;
     bottom: 0;
     flex: 1;
@@ -50,12 +48,10 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
     justify-content: center;
     align-items: center;
     font-size: 3.5vw;
-    /* font-family: 'jeopardy'; */
     color: #FFD700;
     background: linear-gradient(to top left, #000088, #0000ff);
     border: 3px solid#000;
   }
-
 
 
 .answerCss {
@@ -64,17 +60,11 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
 
 #questionContainer {
   background: linear-gradient(to top left, #000088, #0000ff) ;
-  /* font-family: 'jeopardy'; */
   text-shadow: 2px 2px black;
   display:none;
   height: 100%;
   width: 100%;
   position: absolute;
-  /* width: 50px;
-  height: 50px;
- position
-  top: 50%;
-  left: 50%; */
 }
 .marginPart {
   font-size: 40px;
@@ -90,7 +80,6 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
 }
 
 #scoreboard {
-  display: none;
   text-align:center
 }
 
@@ -102,25 +91,17 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
 }
 
 .scoreBox {
-  /* width: 50px;
-  height: 50px; */
-  /* padding: 10px;
-  margin: 10px;
-  box-sizing: border-box;
-  display: block; */
   border: 5px solid black;
-  background-color: lightgray;
   width: 60%;
   margin: auto;
   font-family: 'scoreboard-font';
-  /* text-align: center; */
+  background: linear-gradient(to top left, #6767c0, #0000ff);
+  color: #FFD700;
+  letter-spacing: 5px;
+  font-weight: 1000;
 }
 
 .nameBox {
-  /* width: 50px;
-  height: 50px; */
-  /* padding: 10px;
-  margin: 10px; */
   box-sizing: border-box;
   display: block;
   border: 5px solid black;
@@ -138,7 +119,7 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
 
 
 @font-face {
-  font-family: 'thing';
+  font-family: 'jeopardy-font';
   src: url('../fonts/korinab.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -153,7 +134,7 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
 
 @font-face {
   font-family: 'scoreboard-font';
-  src: url('../fonts/serif_led_board-7.ttf') format("truetype");
+  src: url('../fonts/bold_led_board-7.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
 }

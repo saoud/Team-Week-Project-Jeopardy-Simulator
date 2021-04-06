@@ -14,9 +14,11 @@ let playerTwo = new Player("Saoud", 0, false);
 
 function scoreboardShow() {
   $("#playerOneName").text(playerOne.name);
-  $("#playerOneScore").text(playerOne.score);
+  if (playerOne.score < 0) { $("#playerOneScore").html(`<div class="text-danger">${playerOne.score}<div>`) }
+  else { $("#playerOneScore").text(playerOne.score); }
   $("#playerTwoName").text(playerTwo.name);
-  $("#playerTwoScore").text(playerTwo.score);
+  if (playerTwo.score < 0) { $("#playerTwoScore").html(`<div class="text-danger">${playerTwo.score}<div>`) }
+  else { $("#playerTwoScore").text(playerTwo.score); }
 }
 
 function answerLogic(userAnswer, clue) {
@@ -81,6 +83,7 @@ function generateGridElements() {
 function createBoard() {
   generateCategoryTitles();
   generateGridElements();
+  scoreboardShow();
 
   $("div.grid-container").on("click", "div", function (event) {
     //hide the board
