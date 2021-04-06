@@ -9,8 +9,8 @@ import Player from './player';
 
 let categoryIds = [];
 let categories = [];
-let playerOne = new Player("Saoud", 0, true);
-let playerTwo = new Player("Laurie", 0, false);
+let playerOne = new Player("Laurie", 0, true);
+let playerTwo = new Player("Saoud", 0, false);
 
 function scoreboardShow() {
   $("#playerOneName").text(playerOne.name);
@@ -85,6 +85,7 @@ function createBoard() {
   $("div.grid-container").on("click", "div", function (event) {
     //hide the board
     $("#boardContainer").hide();
+    $("#scoreboard").hide();
     $("#questionContainer").show();
 
     console.log(event.target.id);
@@ -111,6 +112,7 @@ function createBoard() {
         $(".inputContainer").show();
         $("#questionContainer").hide();
         $("#boardContainer").show();
+        $("#scoreboard").show();
       });
     });
   });
