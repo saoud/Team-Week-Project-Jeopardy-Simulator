@@ -127,8 +127,8 @@ function getRandomId(categoryList) {
   do {
     let randomIndex = Math.floor(Math.random() * categoryList.length);
     randomId = categoryList[randomIndex].id;
-  } while (categoryIds.includes(randomId));
-  categoryIds.push(randomId);
+  } while (categoryIds.has(randomId));
+  categoryIds.add(randomId);
   return randomId;
 }
 
@@ -160,7 +160,7 @@ function getRandomCategory(categoryList) {
 
 function getRandomCategories(categoryList) {
   categories = [];
-  categoryIds = [];
+  categoryIds = new Set();
 
   return getRandomCategory(categoryList)
     .then(() => getRandomCategory(categoryList))
