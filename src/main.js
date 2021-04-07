@@ -164,7 +164,7 @@ function makeRandomCategories(categoryListResponse) {
       console.log(`categoryResponse1:`);
       console.log(categoryResponse1);
       if (category1.clues === null || category1.clues === undefined) {
-        console.log("Invalid clue from category1");
+        console.log("Missing clue in category1");
         return makeRandomCategories(categoryListResponse);
       }
       categories.push(category1);
@@ -181,7 +181,7 @@ function makeRandomCategories(categoryListResponse) {
       console.log(categoryResponse2);
       let category2 = new Category(categoryResponse2);
       if (category2.clues === null || category2.clues === undefined) {
-        console.log("Invalid clue from category2");
+        console.log("Missing clue in category2");
         return makeRandomCategories(categoryListResponse);
       }
       categories.push(category2);
@@ -198,7 +198,7 @@ function makeRandomCategories(categoryListResponse) {
       console.log(categoryResponse3);
       let category3 = new Category(categoryResponse3);
       if (category3.clues === null || category3.clues === undefined) {
-        console.log("Invalid clue from category3");
+        console.log("Missing clue in category3");
         return makeRandomCategories(categoryListResponse);
       }
       categories.push(category3);
@@ -215,7 +215,7 @@ function makeRandomCategories(categoryListResponse) {
       console.log(categoryResponse4);
       let category4 = new Category(categoryResponse4);
       if (category4.clues === null || category4.clues === undefined) {
-        console.log("Invalid clue from category4");
+        console.log("Missing clue in category4");
         return makeRandomCategories(categoryListResponse);
       }
       categories.push(category4);
@@ -232,7 +232,7 @@ function makeRandomCategories(categoryListResponse) {
       console.log(categoryResponse5);
       let category5 = new Category(categoryResponse5);
       if (category5.clues === null || category5.clues === undefined) {
-        console.log("Invalid clue from category5");
+        console.log("Missing clue in category5");
         return makeRandomCategories(categoryListResponse);
       }
       categories.push(category5);
