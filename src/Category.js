@@ -7,15 +7,9 @@ export default class Category {
 
   makeClues(responseClues) {
     let clues = {};
+    const validPriceValues = new Set([200, 400, 600, 800, 1000]);
     for (let responseClue of responseClues) {
-      if (responseClue.value === null) {
-        return null;
-      }
-      if (responseClue.value === 200 || 
-          responseClue.value === 400 ||
-          responseClue.value === 600 ||
-          responseClue.value === 800 ||
-          responseClue.value === 1000) {
+      if (validPriceValues.has(responseClue.value)) {
         let newClue = {
           id: responseClue.id,
           answer: responseClue.answer,
@@ -25,6 +19,13 @@ export default class Category {
         clues[responseClue.value] = newClue;
       }
     }
+
+    for (let validPrice of validPriceValues) {
+      if (!(validPrice in clues)) {
+        return null;
+      }
+    }
+
     return clues;
   }
 }
