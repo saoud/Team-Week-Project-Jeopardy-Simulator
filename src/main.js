@@ -9,16 +9,14 @@ import Player from './player';
 
 let categoryIds = [];
 let categories = [];
-let playerOne = new Player("Laurie", 0, true);
-let playerTwo = new Player("Saoud", 0, false);
+let playerOne = new Player("Saoud", 0, true);
+let playerTwo = new Player("Laurie", 0, false);
 
 function scoreboardShow() {
   $("#playerOneName").text(playerOne.name);
-  if (playerOne.score < 0) { $("#playerOneScore").html(`<div class="text-danger">${playerOne.score}<div>`) }
-  else { $("#playerOneScore").text(playerOne.score); }
+  $("#playerOneScore").text(playerOne.score);
   $("#playerTwoName").text(playerTwo.name);
-  if (playerTwo.score < 0) { $("#playerTwoScore").html(`<div class="text-danger">${playerTwo.score}<div>`) }
-  else { $("#playerTwoScore").text(playerTwo.score); }
+  $("#playerTwoScore").text(playerTwo.score);
 }
 
 function answerLogic(userAnswer, clue) {
@@ -83,12 +81,10 @@ function generateGridElements() {
 function createBoard() {
   generateCategoryTitles();
   generateGridElements();
-  scoreboardShow();
 
   $("div.grid-container").on("click", "div", function (event) {
     //hide the board
     $("#boardContainer").hide();
-    $("#scoreboard").hide();
     $("#questionContainer").show();
 
     console.log(event.target.id);
@@ -115,7 +111,6 @@ function createBoard() {
         $(".inputContainer").show();
         $("#questionContainer").hide();
         $("#boardContainer").show();
-        $("#scoreboard").show();
       });
     });
   });
