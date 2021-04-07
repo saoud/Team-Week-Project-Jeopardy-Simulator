@@ -1,53 +1,56 @@
-html, body, .grid-container, .categoryTitles { height: 100%; margin: 0;  font-family: 'Korinab';}
+html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-family:'jeopardy-font'; background: linear-gradient(to top left, #1313d8, #3f3fa0)}
 
 .grid-container {
   font-size: xx-large;
   display: grid;
   border: 3px solid #000;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    ". ."
-    ". ."
-    ". ."
-    ". ."
-    ". ."
-    ". .";
+    ". . . . ."
+    ". . . . ."
+    ". . . . ."
+    ". . . . ."
+    ". . . . ."
+    ". . . . .";
 }
 
 .unclickable{
   pointer-events: none;
 }
 
-.categoryTitles, .grid-container {
+.categoryTitles  {
   font-size: xx-large;
   display: grid;
   text-align: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-template-areas:
-  ". .";
+  ". . . . .";
   color: #ddd;
   background: linear-gradient(to top left, #000088, #0000ff);
+  grid-auto-flow: row;
+}
+
+.categoryTitle{
+  border: 3px solid#000;
 
 }
  .clue {
-      top: 0;
-      bottom: 0;
-      flex: 1;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 3.5vw;
-      font-family: imp61d;
-      color: #FFD700;
-      background: linear-gradient(to top left, #000088, #0000ff);
-      border: 3px solid#000;
+    top: 0;
+    bottom: 0;
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5vw;
+    color: #FFD700;
+    background: linear-gradient(to top left, #000088, #0000ff);
+    border: 3px solid#000;
   }
-
 
 
 .answerCss {
@@ -55,43 +58,83 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0;  font-fa
 }
 
 #questionContainer {
+  background: linear-gradient(to top left, #000088, #0000ff) ;
+  text-shadow: 2px 2px black;
   display:none;
-  font-size: xx-large;
-  color: #ddd;
-  background: linear-gradient(to top left, #000088, #0000ff);
-  position: relative;
-  margin: 10%;
-  /* width: 50px;
-  height: 50px;
+  height: 100%;
+  width: 100%;
   position: absolute;
-  top: 50%;
-  left: 50%; */
 }
 
+.marginPart {
+  font-size: 40px;
+  color: #ddd;  
+  position: center;
+  text-align: center;
+  margin: 7%;
+}
 
 #answerContainer {
   display:none;
 }
 
+#scoreboard {
+  text-align:center
+}
+
+.categoryTitle {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 150px;
+}
+
+.scoreBox {
+  border: 5px solid black;
+  width: 60%;
+  margin: auto;
+  font-family: 'scoreboard-font';
+  background: linear-gradient(to top left, #6767c0, #0000ff);
+  color: #FFD700;
+  letter-spacing: 5px;
+  font-weight: 1000;
+}
+
+.nameBox {
+  box-sizing: border-box;
+  display: block;
+  border: 5px solid black;
+  text-align: center;
+  line-height: 80px;
+  height: 90px;
+  width: 60%;
+  margin: auto;
+  font-family: 'name-font';
+  font-weight: 400;
+  color: lightgray;
+  font-size: 65px;
+  background: linear-gradient(to top left, #000088, #0000ff);
+}
+
+
 @font-face {
-  font-family: 'Korinab';
-  src: local('../fonts/korinab.ttf') format('truetype');
+  font-family: 'jeopardy-font';
+  src: url('../fonts/korinab.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
-/* .grid-container * {
-  border: 1px solid #060CE9;
-  position: relative;
-} */
-/* .categoryTitles {
-  border: 1px solid black;
-  position: relative;
-} */
+@font-face {
+  font-family: 'name-font';
+  src: url('../fonts/Thin Pencil Handwriting.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
-/* .grid-container *:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
+@font-face {
+  font-family: 'scoreboard-font';
+  src: url('../fonts/bold_led_board-7.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
