@@ -7,8 +7,8 @@ import CategoryLookupService from './services/category-lookup-service.js';
 import Category from './Category';
 import Player from './player';
 
-let categoryIds = [];
-let categories = [];
+let categoryIds;
+let categories;
 let playerOne = new Player("Saoud", 0, true);
 let playerTwo = new Player("Laurie", 0, false);
 
@@ -52,7 +52,7 @@ function displayErrors(error) {
 }
 
 function getCategoryIds(list) {
-  categoryIds = [];
+  let catIds = [];
   let randomIndices = [];
   while (randomIndices.length < 5) {
     let randomIndex = Math.floor(Math.random() * 100);
@@ -62,8 +62,10 @@ function getCategoryIds(list) {
   }
   console.log(randomIndices);
   for (let randomIndex of randomIndices) {
-    categoryIds.push(list[randomIndex].id);
+    catIds.push(list[randomIndex].id);
   }
+
+  return catIds;
 }
 
 function generateCategoryTitles() {
@@ -126,22 +128,33 @@ function makeCategoryList(categoryListResponse) {
 }
 
 function makeRandomCategories(categoryListResponse) {
-  getCategoryIds(categoryListResponse);
+  categories = [];
+  categoryIds = getCategoryIds(categoryListResponse);
   console.log(categoryIds);
   //where we put the catergories ids go
   return CategoryLookupService.getCategory(categoryIds[0])
     .then(function (categoryResponse1) {
+      if (categoryResponse1 === undefined) {
+        console.log("categoryResponse1 is undefined");
+        return;
+      }
       if (categoryResponse1 instanceof Error) {
         throw Error(`category API error: ${categoryResponse1.message}`);
       }
       let category1 = new Category(categoryResponse1);
+      console.log(`categoryResponse1:`);
+      console.log(categoryResponse1);
       if (category1.clues === null || category1.clues === undefined) {
-        console.log("Invalid clue");
+        console.log("Invalid clue from category1");
         return makeRandomCategories(categoryListResponse);
       }
       categories.push(category1);
       return CategoryLookupService.getCategory(categoryIds[1]);
     }).then(function (categoryResponse2) {
+      if (categoryResponse2 === undefined) {
+        console.log("categoryResponse2 is undefined");
+        return;
+      }
       if (categoryResponse2 instanceof Error) {
         throw Error(`category API error: ${categoryResponse2.message}`);
       }
@@ -149,7 +162,7 @@ function makeRandomCategories(categoryListResponse) {
       console.log(categoryResponse2);
       let category2 = new Category(categoryResponse2);
       if (category2.clues === null || category2.clues === undefined) {
-        console.log("Invalid clue");
+        console.log("Invalid clue from category2");
         return makeRandomCategories(categoryListResponse);
       }
       categories.push(category2);
