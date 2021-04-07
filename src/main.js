@@ -53,24 +53,6 @@ function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
-// function getCategoryIds(list) {
-//   let catIds = [];
-//   let randomIndices = [];
-//   while (randomIndices.length < 5) {
-//     let randomIndex = Math.floor(Math.random() * 100);
-//     if (randomIndices.indexOf(randomIndex) === -1) {
-//       randomIndices.push(randomIndex);
-//     }
-//   }
-
-//   console.log(randomIndices);
-//   for (let randomIndex of randomIndices) {
-//     catIds.push(list[randomIndex].id);
-//   }
-
-//   return catIds;
-// }
-
 function generateCategoryTitles() {
   for (let categoryIndex = 0; categoryIndex < categories.length; categoryIndex++) {
     $("div.categoryTitles").append(`<div class="categoryTitle" data-category-index=${categoryIndex}>${categories[categoryIndex].title.toUpperCase()}</div>`);
@@ -140,13 +122,6 @@ $(".button").click(function () {
 
 });
 
-function makeCategoryList(categoryListResponse) {
-  if (categoryListResponse instanceof Error) {
-    throw Error(`Category List API error: ${categoryListResponse.message}`);
-  }
-  return categoryListResponse;
-}
-
 function getRandomId(categoryList) {
   let randomId;
   do {
@@ -155,6 +130,13 @@ function getRandomId(categoryList) {
   } while (categoryIds.includes(randomId));
   categoryIds.push(randomId);
   return randomId;
+}
+
+function makeCategoryList(categoryListResponse) {
+  if (categoryListResponse instanceof Error) {
+    throw Error(`Category List API error: ${categoryListResponse.message}`);
+  }
+  return categoryListResponse;
 }
 
 function getRandomCategory(categoryList) {
@@ -185,15 +167,6 @@ function getRandomCategories(categoryList) {
     .then(() => getRandomCategory(categoryList))
     .then(() => getRandomCategory(categoryList))
     .then(() => getRandomCategory(categoryList));
-  // return Promise.all([
-  //   getRandomCategory(categoryList),
-  //   getRandomCategory(categoryList),
-  //   getRandomCategory(categoryList),
-  //   getRandomCategory(categoryList),
-  //   getRandomCategory(categoryList)
-  // ]).then(function(randomCategories) {
-  //   categories = randomCategories;
-  // });
 }
 
 $(document).ready(function () {
