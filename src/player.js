@@ -4,9 +4,4 @@ export default class Player {
     this.score = score;
     this.turn = turn;
   }
-
-
-
-
-
 }
