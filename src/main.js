@@ -9,8 +9,8 @@ import Player from './player';
 
 let categoryIds = [];
 let categories = [];
-let playerOne = new Player("Laurie", 0, true);
-let playerTwo = new Player("Saoud", 0, false);
+let playerOne;
+let playerTwo;
 
 function scoreboardShow() {
   $("#playerOneName").text(playerOne.name);
@@ -81,6 +81,11 @@ function generateGridElements() {
 }
 
 function createBoard() {
+  let playerOneName = window.localStorage.getItem("playerOneName");
+  let playerTwoName = window.localStorage.getItem("playerTwoName");
+  playerOne = new Player(playerOneName, 0, true);
+  playerTwo = new Player(playerTwoName, 0, false);
+
   generateCategoryTitles();
   generateGridElements();
   scoreboardShow();
@@ -121,56 +126,64 @@ function createBoard() {
   });
 }
 
-$(document).ready(function () {
-  CategoriesListService.getCategoryList()
-    .then(function (categoryListResponse) {
-      if (categoryListResponse instanceof Error) {
-        throw Error(`Category List API error: ${categoryListResponse.message}`);
-      }
-      getCategoryIds(categoryListResponse);
-      //where we put the catergories ids go
-      return CategoryLookupService.getCategory(categoryIds[0]);
-    })
-    .then(function (categoryResponse1) {
-      if (categoryResponse1 instanceof Error) {
-        throw Error(`category API error: ${categoryResponse1.message}`);
-      }
-      let category1 = new Category(categoryResponse1);
-      categories.push(category1);
-      return CategoryLookupService.getCategory(categoryIds[1]);
-    }).then(function (categoryResponse2) {
-      if (categoryResponse2 instanceof Error) {
-        throw Error(`category API error: ${categoryResponse2.message}`);
-      }
-      let category2 = new Category(categoryResponse2);
-      categories.push(category2);
-      return CategoryLookupService.getCategory(categoryIds[2]);
-    }).then(function (categoryResponse3) {
-      if (categoryResponse3 instanceof Error) {
-        throw Error(`category API error: ${categoryResponse3.message}`);
-      }
-      let category3 = new Category(categoryResponse3);
-      categories.push(category3);
-      return CategoryLookupService.getCategory(categoryIds[3]);
-    }).then(function (categoryResponse4) {
-      if (categoryResponse4 instanceof Error) {
-        throw Error(`category API error: ${categoryResponse4.message}`);
-      }
-      let category4 = new Category(categoryResponse4);
-      categories.push(category4);
-      return CategoryLookupService.getCategory(categoryIds[4]);
-    }).then(function (categoryResponse5) {
-      if (categoryResponse5 instanceof Error) {
-        throw Error(`category API error: ${categoryResponse5.message}`);
-      }
-      let category5 = new Category(categoryResponse5);
-      categories.push(category5);
-      createBoard();
-    }).catch(function (error) {
-      displayErrors(error.message);
-    });
 
 
+$(".button").click(function () {
+  let playerOneName = $("#playerNameInput").val();
+  let playerTwoName = $("#playerTwoNameInput").val();
+  // console.log(playerOneName)
+  // console.log(playerTwoName)
 
+
+  window.localStorage.setItem("playerOneName", playerOneName);
+  window.localStorage.setItem("playerTwoName", playerTwoName);
 
 });
+
+CategoriesListService.getCategoryList()
+  .then(function (categoryListResponse) {
+    if (categoryListResponse instanceof Error) {
+      throw Error(`Category List API error: ${categoryListResponse.message}`);
+    }
+    getCategoryIds(categoryListResponse);
+    //where we put the catergories ids go
+    return CategoryLookupService.getCategory(categoryIds[0]);
+  })
+  .then(function (categoryResponse1) {
+    if (categoryResponse1 instanceof Error) {
+      throw Error(`category API error: ${categoryResponse1.message}`);
+    }
+    let category1 = new Category(categoryResponse1);
+    categories.push(category1);
+    return CategoryLookupService.getCategory(categoryIds[1]);
+  }).then(function (categoryResponse2) {
+    if (categoryResponse2 instanceof Error) {
+      throw Error(`category API error: ${categoryResponse2.message}`);
+    }
+    let category2 = new Category(categoryResponse2);
+    categories.push(category2);
+    return CategoryLookupService.getCategory(categoryIds[2]);
+  }).then(function (categoryResponse3) {
+    if (categoryResponse3 instanceof Error) {
+      throw Error(`category API error: ${categoryResponse3.message}`);
+    }
+    let category3 = new Category(categoryResponse3);
+    categories.push(category3);
+    return CategoryLookupService.getCategory(categoryIds[3]);
+  }).then(function (categoryResponse4) {
+    if (categoryResponse4 instanceof Error) {
+      throw Error(`category API error: ${categoryResponse4.message}`);
+    }
+    let category4 = new Category(categoryResponse4);
+    categories.push(category4);
+    return CategoryLookupService.getCategory(categoryIds[4]);
+  }).then(function (categoryResponse5) {
+    if (categoryResponse5 instanceof Error) {
+      throw Error(`category API error: ${categoryResponse5.message}`);
+    }
+    let category5 = new Category(categoryResponse5);
+    categories.push(category5);
+    createBoard();
+  }).catch(function (error) {
+    displayErrors(error.message);
+  });
