@@ -1,6 +1,5 @@
 html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-family:'jeopardy-font'; background: linear-gradient(to top left, #1313d8, #3f3fa0)}
 
-
 .grid-container {
   font-size: xx-large;
   display: grid;
@@ -66,6 +65,7 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
   width: 100%;
   position: absolute;
 }
+
 .marginPart {
   font-size: 40px;
   color: #ddd;  
@@ -73,7 +73,6 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
   text-align: center;
   margin: 7%;
 }
-
 
 #answerContainer {
   display:none;
