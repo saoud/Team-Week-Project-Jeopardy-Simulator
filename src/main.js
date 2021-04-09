@@ -13,7 +13,6 @@ let playerOne;
 let playerTwo;
 
 function scoreboardShow() {
-  $("#scoreboard").show();
   $("#playerOneName").text(playerOne.name);
   if (playerOne.score < 0) { $("#playerOneScore").html(`<div class="text-danger">${playerOne.score}<div>`); }
   else { $("#playerOneScore").text(playerOne.score); }
@@ -75,6 +74,7 @@ function createBoard() {
 
   generateCategoryTitles();
   generateGridElements();
+  $("#scoreboard").show();
   scoreboardShow();
 
   $("div.grid-container").on("click", "div", function (event) {
