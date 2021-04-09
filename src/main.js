@@ -13,6 +13,7 @@ let playerOne;
 let playerTwo;
 
 function scoreboardShow() {
+  $("#scoreboard").show();
   $("#playerOneName").text(playerOne.name);
   if (playerOne.score < 0) { $("#playerOneScore").html(`<div class="text-danger">${playerOne.score}<div>`); }
   else { $("#playerOneScore").text(playerOne.score); }
@@ -91,7 +92,6 @@ function createBoard() {
     $("#questionCard").text(`${clue.question.toUpperCase()}`);
     console.log(clue.answer);
     $(".question-btn").one("click", function (event) {
-      // event.stopPropagation();
       event.preventDefault();
       let input = $("#answerBox").val();
       $(".inputContainer").hide();

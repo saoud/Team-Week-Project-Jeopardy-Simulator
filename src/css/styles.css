@@ -79,7 +79,8 @@ html, body, .grid-container, .categoryTitles { height: 100%; margin: 0; font-fam
 }
 
 #scoreboard {
-  text-align:center
+  text-align:center;
+  display:none;
 }
 
 .categoryTitle {
