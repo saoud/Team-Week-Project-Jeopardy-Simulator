@@ -8,7 +8,6 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: "/Team-Week-Project-Jeopardy-Simulator/"
   },
   devtool: 'eval-source-map',
   devServer: {
