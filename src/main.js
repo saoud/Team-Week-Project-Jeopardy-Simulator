@@ -22,7 +22,6 @@ function scoreboardShow() {
 }
 
 function answerLogic(userAnswer, clue) {
-  console.log(userAnswer, clue.answer, clue.value);
   if (userAnswer.toLowerCase() === clue.answer.toLowerCase()) {
     if (playerOne.turn === true) {
       playerOne.score += clue.value;
@@ -83,7 +82,6 @@ function createBoard() {
     $("#scoreboard").hide();
     $("#questionContainer").show();
 
-    console.log(event.target.id);
     const data = event.target.dataset;
     let clue = categories[data.categoryIndex].clues[data.value];
 
@@ -141,17 +139,13 @@ function makeCategoryList(categoryListResponse) {
 
 function getRandomCategory(categoryList) {
   let categoryId = getRandomId(categoryList);
-  console.log(categoryId);
   return CategoryLookupService.getCategory(categoryId)
     .then(function(categoryResponse) {
       if (categoryResponse instanceof Error) {
         throw Error(`category API error: ${categoryResponse.message}`);
       }
-      console.log(`categoryResponse:`);
-      console.log(categoryResponse);
       let category = new Category(categoryResponse);
       if (category.clues === null || category.clues === undefined) {
-        console.log("Missing clue in category");
         return getRandomCategory(categoryList);
       }
       categories.push(category);
@@ -175,7 +169,6 @@ $(document).ready(function () {
     .then(getRandomCategories)
     .then(createBoard)
     .catch(function (error) {
-      console.log(error);
       displayErrors(error.message);
     });
 });
