@@ -2,13 +2,13 @@
 #### 
 #### Project initiated: 3-28-21
 #### By Saoud Rana, Jesse Callahan, Laurie Waller, Shanen Cross and Collin Chapman
+
+https://saoud.github.io/Team-Week-Project-Jeopardy-Simulator/
+
 ## Project Description
 
 ```
-This api: https://jservice.io/ gives trivia questions much like jeopardy.
-We could try to set up a table of questions much like the iconic Jeopardy! board. 
-We could use CSS to mimic the little blue Jeopardy! squares.
-This project would probably have two MVP avenues we could explore listed below:
+Jeopardy! Simulator is a simulator of the classic game show game Jeopardy! The application uses the api - https://jservice.io/ which is a database of trivia questions. The questions are set up much like the iconic Jeopardy! board and two player can play back and forth. Keeping score based on right answers. Try it below!
 ```
  
 ## Technologies Used
@@ -17,7 +17,6 @@ This project would probably have two MVP avenues we could explore listed below:
 * HTML
 * CSS
 * Node Package Manager
-* Jest
 * Webpack
 * Bootstrap
 
@@ -31,7 +30,9 @@ This project would probably have two MVP avenues we could explore listed below:
 * Start server with command $ `npm run start`
  
 ## Known Bugs
-* No known bugs
+* FIXED 4/09/21 - Problem with Api data. Doesn't show all values, making game crash. 
+* No end game logic. 
+* Edge cases on the answer to the Jeopardy! questions cause the user to get a wrong answer even though they essentially answered right. 
 
 ## Notes
 
